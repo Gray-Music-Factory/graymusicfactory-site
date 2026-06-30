@@ -782,27 +782,31 @@ a {
   background: transparent;
   border: 1px solid var(--glass-border);
   color: var(--text-muted);
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-subheading);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
   cursor: pointer;
   transition: var(--transition-bounce);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .track-action-btn:hover {
   border-color: var(--color-primary);
   color: var(--text-main);
   background: rgba(139, 92, 246, 0.1);
-  transform: scale(1.08);
+  transform: translateY(-1px);
 }
 
 .track-action-btn:disabled {
-  opacity: 0.2;
+  opacity: 0.15;
   cursor: not-allowed;
-  border-color: var(--glass-border) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
   color: var(--text-dim) !important;
   background: transparent !important;
   transform: none !important;

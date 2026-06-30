@@ -1,0 +1,23 @@
+#!/bin/sh
+# 1. Get current date and time
+YEAR_MONTH_DAY=$(date "+%Y.%m.%d")
+HOUR=$(date "+%H")
+MINUTE=$(date "+%M")
+
+# 2. Strip leading zeros to avoid octal math errors in shell arithmetic
+HOUR=$(echo "$HOUR" | sed 's/^0*//')
+[ -z "$HOUR" ] && HOUR=0
+MINUTE=$(echo "$MINUTE" | sed 's/^0*//')
+[ -z "$MINUTE" ] && MINUTE=0
+
+# 3. Calculate minute of the day (0 to 1439)
+N=$((HOUR * 60 + MINUTE))
+VERSION_STR="${YEAR_MONTH_DAY}-${N}"
+
+echo "Bumping version to: ${VERSION_STR}"
+
+# 4. Use Git's built-in Perl to update index.html in place (works on Mac, Linux, and Windows Git Bash)
+perl -pi -e "s|(<span\s+id=\"site-version\">)[^<]*(</span>)|\${1}${VERSION_STR}\${2}|g" index.html
+
+# 5. Stage the updated index.html
+git add index.html

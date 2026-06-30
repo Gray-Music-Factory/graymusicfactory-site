@@ -49,37 +49,17 @@ const BAND_MEMBERS = [
     turnOffs: "Trying to think of 'turn ons', people who pronounce nuclear as nucyooler, that sweet Chinese red-bean-soup dessert stuff."
   },
   {
-    id: "ari",
-    name: "Ari Flink",
-    role: "Guitar",
-    birthplace: "Kemi, Finland",
-    shadeOfGray: "#bbbbbb",
-    image: "images/ari.jpg",
-    bio: [
-      "Ari was born in Kemi, Finland (60 miles south of the Arctic Circle - where nights are only 15 minutes in June and home of the world’s largest ‘snow fort’ and in view of the Northern Lights). This may explain why Ari wears sunglasses to bed.",
-      "His uncle was the inspiration that got him to start playing guitar at 15. Ari played in various bands over the years.",
-      "Ari is truly a Scandinavian eclectic. He played - as the token Scandinavian - in a Bay Area Taiwanese rock/pop band ('Idea Band'). But, he also played in several bay area bands while trying to figure out what Idea Band members were saying about him.",
-      "After high school, Ari studied electrical engineering and worked his entire career in high tech as a programmer and IT systems architect. Ari worked with Steve at eBay for several years. There he became aware of the solo productions Steve was doing from home.",
-      "He subsequently invited Steve to play in a band with him and Mikael at a summer event (Solstice). After that experience they got more serious. Ari set up an advanced monitoring system. With Mikael on bass, they began to develop more sophisticated arrangements, harmonies, and used Ableton Live to control some aspects of their live performances."
-    ],
-    turnOns: "Daylight. Walks in the rain. Watching the sunset with his pet narwhal. Eating sushi in Mexican restaurants.",
-    turnOffs: "Fakers, haters, space invaders, paint vapors, craters & rude waiters."
-  },
-  {
-    id: "mikael",
-    name: "Mikael Vidstedt",
+    id: "richard",
+    name: "Richard Lum",
     role: "Bass",
-    birthplace: "Upplands Vasby, Sweden",
+    birthplace: "San Francisco, CA",
     shadeOfGray: "#838383",
-    image: "images/mikael.jpg",
+    image: "images/richard.png",
     bio: [
-      "Mikael was born in Upplands Vasby, Sweden which boasts a chocolate factory and is home to the band 'Europe' (who had the epic rock hit 'The Final Countdown'). So basically, chocolate and glam rock.",
-      "As a young man, Mikael was drawn to British Rock and his love of rhythm led him to buy a bass and teach himself to play by ear.",
-      "Mikael is a musical anomaly. He sang in a choir in Sweden as a child, but didn’t play in bands until later in life. Content mastering bass in private with no plans of playing in bands until a friend invited him to sit in on a jam session. That’s when he found out he belonged in that environment and so did everyone else. Mikael represents 50% of GRAY’s Scandinavian contingency.",
-      "Mikael came to the U.S. in 2012 to run a development team at Oracle. It’s amazing that Mikael taught himself bass, didn’t play in his first band until recently, and has become a core member of GRAY."
+      "Bio coming soon."
     ],
-    turnOns: "Hot cocoa, ski lifts, ice fishing.",
-    turnOffs: "Luke warm cocoa, stalled ski lifts, ice fishing (conflicted on ice fishing)."
+    turnOns: "",
+    turnOffs: ""
   },
   {
     id: "ken",
@@ -242,12 +222,8 @@ function renderSongs(filter = 'all') {
       : '<span class="badge badge-coming-soon">Workin\' on it</span>';
       
     const lyricsBtn = song.hasLyrics
-      ? `<button class="track-action-btn" onclick="openLyrics('${song.title.replace(/'/g, "\\'")}')" title="View Lyrics">
-          <i class="fas fa-file-alt"></i>
-         </button>`
-      : `<button class="track-action-btn" disabled title="No Lyrics Available">
-          <i class="fas fa-times" style="opacity: 0.2;"></i>
-         </button>`;
+      ? `<button class="track-action-btn" onclick="openLyrics('${song.title.replace(/'/g, "\\'")}')" title="View Lyrics">LYRICS</button>`
+      : `<button class="track-action-btn" disabled title="No Lyrics Available">N/A</button>`;
          
     row.innerHTML = `
       <td class="tracklist-cell track-index" style="text-align: center;">
