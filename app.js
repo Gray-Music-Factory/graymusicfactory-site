@@ -30,6 +30,49 @@ let SONGS_LIST = [];
 let currentTrackIndex = -1;
 let isPlaying = false;
 
+// Music Videos Database (Chronological: Cute Little Lesbians -> Living Life -> Wall of Love)
+const VIDEOS_DATABASE = [
+  // 1. Cute Little Lesbians
+  {
+    title: "Cute Little Lesbians",
+    type: "official",
+    youtubeId: "5k_9qRgF-jI",
+    label: "Official Music Video"
+  },
+  {
+    title: "Cute Little Lesbians",
+    type: "live",
+    youtubeId: "TA4XrzCKiDU",
+    label: "Live Session"
+  },
+  // 2. Living Life
+  {
+    title: "Living Life",
+    type: "official",
+    youtubeId: "JjTS3_Hrg-4",
+    label: "Official Music Video"
+  },
+  {
+    title: "Living Life",
+    type: "live",
+    youtubeId: "L5bkgjDzztQ",
+    label: "Live Session"
+  },
+  // 3. Wall of Love
+  {
+    title: "Wall of Love",
+    type: "official",
+    youtubeId: "uxlKv-_ryHk",
+    label: "Official Music Video"
+  },
+  {
+    title: "Wall of Love",
+    type: "live",
+    youtubeId: "gtmiWimk7C4",
+    label: "Live Session"
+  }
+];
+
 // Band Members Data
 const BAND_MEMBERS = [
   {
@@ -103,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Render the tracklist
   renderSongs('all');
+  
+  // Render the music videos
+  renderVideos();
   
   // Set up event listeners
   setupEventListeners();
@@ -608,6 +654,63 @@ window.openBio = function(id) {
   modal.classList.add('open');
 };
 
+// Render Music Videos Grids (Official & Live separate)
+function renderVideos() {
+  const officialContainer = document.getElementById('official-videos-grid');
+  const liveContainer = document.getElementById('live-videos-grid');
+  
+  if (officialContainer) officialContainer.innerHTML = '';
+  if (liveContainer) liveContainer.innerHTML = '';
+  
+  VIDEOS_DATABASE.forEach(video => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.setAttribute('data-type', video.type);
+    
+    // Using high quality YouTube thumbnail
+    const thumbUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+    
+    card.innerHTML = `
+      <div class="video-thumbnail-wrapper" onclick="playVideoModal('${video.youtubeId}')">
+        <img src="${thumbUrl}" alt="${video.title} ${video.label}" class="video-thumbnail">
+        <div class="video-play-overlay">
+          <i class="fas fa-play"></i>
+        </div>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">${video.title}</h3>
+        <p class="video-desc">${video.label}</p>
+        <span class="video-badge badge-${video.type}">${video.type === 'official' ? 'Official' : 'Live'}</span>
+      </div>
+    `;
+    
+    if (video.type === 'official' && officialContainer) {
+      officialContainer.appendChild(card);
+    } else if (video.type === 'live' && liveContainer) {
+      liveContainer.appendChild(card);
+    }
+  });
+}
+
+// Video Modal Player Logic
+window.playVideoModal = function(youtubeId) {
+  const modal = document.getElementById('video-modal');
+  const iframe = document.getElementById('video-iframe');
+  if (modal && iframe) {
+    iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+    modal.classList.add('open');
+  }
+};
+
+window.closeVideoModal = function() {
+  const modal = document.getElementById('video-modal');
+  const iframe = document.getElementById('video-iframe');
+  if (modal && iframe) {
+    modal.classList.remove('open');
+    iframe.src = ''; // stops video playing in background
+  }
+};
+
 window.closeBio = function() {
   document.getElementById('bio-modal').classList.remove('open');
 };
@@ -675,11 +778,20 @@ function setupEventListeners() {
     });
   });
   
+  // Video filter buttons removed as sections are now static separate grids
+  
   // Close modals on clicking backdrop
   const bioModal = document.getElementById('bio-modal');
   bioModal.addEventListener('click', (e) => {
     if (e.target === bioModal) {
       closeBio();
+    }
+  });
+  
+  const videoModal = document.getElementById('video-modal');
+  videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      closeVideoModal();
     }
   });
   
