@@ -30,6 +30,7 @@
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#music">Music & Lyrics</a></li>
+                <li><a href="#videos">Videos</a></li>
                 <li><a href="#shop">Shop</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -80,6 +81,32 @@
 
             <!-- Songs List Table Container -->
             <div id="songs-list-container" class="songs-list-container">
+                <!-- Populated dynamically by app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Videos Section -->
+    <section id="videos" class="section" style="background: rgba(10, 10, 15, 0.2);">
+        <div class="container">
+            <h2 class="section-title">Music Videos</h2>
+            <div class="section-subtitle">Official Releases & Live Sessions</div>
+
+            <div class="videos-header-actions" style="text-align: center; margin-bottom: 40px;">
+                <a href="https://www.youtube.com/@graymusicfactory" target="_blank" class="btn btn-youtube">
+                    <i class="fab fa-youtube"></i> Visit Our YouTube Channel
+                </a>
+            </div>
+
+            <!-- Official Music Videos -->
+            <h3 class="video-section-title">Official Music Videos</h3>
+            <div class="videos-grid" id="official-videos-grid" style="margin-bottom: 50px;">
+                <!-- Populated dynamically by app.js -->
+            </div>
+
+            <!-- Live Sessions -->
+            <h3 class="video-section-title">Live Sessions</h3>
+            <div class="videos-grid" id="live-videos-grid">
                 <!-- Populated dynamically by app.js -->
             </div>
         </div>
@@ -314,11 +341,18 @@
         <div class="container">
             <div class="footer-logo">GRAY<span>.</span></div>
             <p>All songs written by Matt Kramer & Steve Mansour</p>
+            
+            <div class="footer-socials" style="margin-top: 16px; margin-bottom: 16px; display: flex; justify-content: center; gap: 12px;">
+                <a href="https://www.youtube.com/@graymusicfactory" target="_blank" class="footer-social-link" title="Official YouTube Channel">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
             <div class="footer-credit">
                 &copy; 2026 GRAY Music Factory. All rights reserved.
             </div>
             <div class="footer-version" style="margin-top: 8px; font-size: 0.75rem; opacity: 0.3;">
-                Version <span id="site-version">2026.06.30-910</span>
+                Version <span id="site-version">2026.07.01-646</span>
             </div>
         </div>
     </footer>
@@ -432,6 +466,18 @@
 
     <!-- Hidden Audio Element -->
     <audio id="main-audio"></audio>
+
+    <!-- Video Player Modal -->
+    <div id="video-modal" class="bio-modal">
+        <div class="video-modal-content">
+            <button class="bio-modal-close" onclick="closeVideoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-iframe-container">
+                <iframe id="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="lyrics-data.js"></script>
