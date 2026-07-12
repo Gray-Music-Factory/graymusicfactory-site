@@ -593,6 +593,43 @@ a {
   height: 6px;
 }
 
+/* Progress Bar Dragging State */
+.progress-bar-wrapper.dragging {
+  height: 6px;
+}
+
+.progress-bar-wrapper.dragging .progress-bar-fill::after {
+  opacity: 1;
+  transform: scale(1.3);
+  background: var(--color-primary);
+}
+
+/* Skip Buttons Overlay Styling */
+.skip-btn .skip-icon-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.skip-btn i {
+  font-size: 1.15rem;
+}
+
+.skip-btn .skip-time-text {
+  position: absolute;
+  font-size: 0.52rem;
+  font-weight: 800;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-main);
+  pointer-events: none;
+  font-family: var(--font-subheading);
+}
+
 /* Volume and Extra Controls */
 .player-extra {
   display: flex;
@@ -1806,7 +1843,7 @@ textarea.form-input {
   }
   
   .player-buttons {
-    gap: 16px;
+    gap: 10px;
   }
   
   .player-btn {

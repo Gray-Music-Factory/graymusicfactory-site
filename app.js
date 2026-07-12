@@ -29,6 +29,7 @@ const AUDIO_MAPPING = {
 let SONGS_LIST = [];
 let currentTrackIndex = -1;
 let isPlaying = false;
+let isDraggingProgress = false;
 
 // Music Videos Database (Chronological: Cute Little Lesbians -> Living Life -> Wall of Love)
 const VIDEOS_DATABASE = [
@@ -315,6 +316,7 @@ function setupAudioPlayer() {
   });
   
   audioElement.addEventListener('timeupdate', () => {
+    if (isDraggingProgress) return;
     if (isNaN(audioElement.duration)) return;
     const progress = (audioElement.currentTime / audioElement.duration) * 100;
     const fill = document.getElementById('player-progress-fill');
@@ -341,16 +343,76 @@ function setupAudioPlayer() {
     }
   });
   
-  // Progress bar scrubbing
+  // Progress bar scrubbing and dragging
   const progressWrapper = document.getElementById('player-progress-wrapper');
   if (progressWrapper) {
-    progressWrapper.addEventListener('click', (e) => {
-      if (currentTrackIndex === -1 || isNaN(audioElement.duration)) return;
+    const updateProgressFromEvent = (e) => {
+      if (currentTrackIndex === -1 || isNaN(audioElement.duration)) return 0;
       const rect = progressWrapper.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const width = rect.width;
-      const percentage = clickX / width;
+      const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+      const clickX = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const percentage = clickX / rect.width;
+      
+      // Update visual progress instantly
+      const fill = document.getElementById('player-progress-fill');
+      if (fill) fill.style.width = `${percentage * 100}%`;
+      
+      // Update time displays instantly
+      const currentT = document.getElementById('player-time-current');
+      if (currentT) currentT.textContent = formatTime(percentage * audioElement.duration);
+      
+      return percentage;
+    };
+    
+    // Press down
+    progressWrapper.addEventListener('mousedown', (e) => {
+      if (currentTrackIndex === -1 || isNaN(audioElement.duration)) return;
+      isDraggingProgress = true;
+      progressWrapper.classList.add('dragging');
+      updateProgressFromEvent(e);
+    });
+    
+    // Touch start for mobile dragging
+    progressWrapper.addEventListener('touchstart', (e) => {
+      if (currentTrackIndex === -1 || isNaN(audioElement.duration)) return;
+      isDraggingProgress = true;
+      progressWrapper.classList.add('dragging');
+      updateProgressFromEvent(e);
+    }, { passive: true });
+    
+    // Mouse dragging
+    window.addEventListener('mousemove', (e) => {
+      if (!isDraggingProgress) return;
+      updateProgressFromEvent(e);
+    });
+    
+    // Touch dragging
+    window.addEventListener('touchmove', (e) => {
+      if (!isDraggingProgress) return;
+      updateProgressFromEvent(e);
+    }, { passive: true });
+    
+    // Mouse release
+    window.addEventListener('mouseup', (e) => {
+      if (!isDraggingProgress) return;
+      isDraggingProgress = false;
+      progressWrapper.classList.remove('dragging');
+      const percentage = updateProgressFromEvent(e);
       audioElement.currentTime = percentage * audioElement.duration;
+    });
+    
+    // Touch release
+    window.addEventListener('touchend', (e) => {
+      if (!isDraggingProgress) return;
+      isDraggingProgress = false;
+      progressWrapper.classList.remove('dragging');
+      const clientX = (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientX : null;
+      if (clientX !== null) {
+        const rect = progressWrapper.getBoundingClientRect();
+        const clickX = Math.max(0, Math.min(clientX - rect.left, rect.width));
+        const percentage = clickX / rect.width;
+        audioElement.currentTime = percentage * audioElement.duration;
+      }
     });
   }
   
@@ -493,6 +555,20 @@ window.nextTrack = function() {
   
   if (SONGS_LIST[idx].hasRecording) {
     playSong(idx);
+  }
+};
+
+// Skip backward 15 seconds
+window.skipBackward15 = function() {
+  if (currentTrackIndex === -1 || !audioElement) return;
+  audioElement.currentTime = Math.max(0, audioElement.currentTime - 15);
+};
+
+// Skip forward 15 seconds
+window.skipForward15 = function() {
+  if (currentTrackIndex === -1 || !audioElement) return;
+  if (!isNaN(audioElement.duration)) {
+    audioElement.currentTime = Math.min(audioElement.duration, audioElement.currentTime + 15);
   }
 };
 

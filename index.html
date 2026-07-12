@@ -428,9 +428,21 @@
                     <button class="player-btn" onclick="prevTrack()" title="Previous Song">
                         <i class="fas fa-step-backward"></i>
                     </button>
+                    <button class="player-btn skip-btn" onclick="skipBackward15()" title="Skip Backward 15s">
+                        <div class="skip-icon-container">
+                            <i class="fas fa-rotate-left"></i>
+                            <span class="skip-time-text">15</span>
+                        </div>
+                    </button>
                     <button class="player-btn player-btn-play" onclick="togglePlay()" id="player-play-btn"
                         title="Play/Pause">
                         <i class="fas fa-play" id="player-play-icon"></i>
+                    </button>
+                    <button class="player-btn skip-btn" onclick="skipForward15()" title="Skip Forward 15s">
+                        <div class="skip-icon-container">
+                            <i class="fas fa-rotate-right"></i>
+                            <span class="skip-time-text">15</span>
+                        </div>
                     </button>
                     <button class="player-btn" onclick="nextTrack()" title="Next Song">
                         <i class="fas fa-step-forward"></i>
