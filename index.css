@@ -439,6 +439,17 @@ a {
   display: flex;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
+}
+
+.player-track-info:hover .player-title {
+  color: var(--color-primary);
+}
+
+.player-track-info:hover .player-album-art {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  border-color: rgba(139, 92, 246, 0.3);
 }
 
 .player-album-art {
@@ -449,6 +460,7 @@ a {
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .player-album-art img {
@@ -470,6 +482,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 4px;
+  transition: color 0.2s ease;
 }
 
 .player-artist {
