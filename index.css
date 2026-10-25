@@ -5,6 +5,34 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 
+/* Brand Fonts */
+@font-face {
+  font-family: 'Phatt Phreddy';
+  src: url('fonts/phattphreddy.woff') format('woff'),
+       url('fonts/phattphreddy.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Steelfish';
+  src: url('fonts/steelfish-bold.woff') format('woff'),
+       url('fonts/steelfish-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Steelfish';
+  src: url('fonts/steelfish-regular.woff') format('woff'),
+       url('fonts/steelfish-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-darker: #07070a;
   --bg-dark: #0d0d14;
@@ -24,6 +52,8 @@
   --font-heading: 'Syne', sans-serif;
   --font-subheading: 'Space Grotesk', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-brand-gray: 'Phatt Phreddy', sans-serif;
+  --font-brand-sub: 'Steelfish', 'Space Grotesk', sans-serif;
   
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -231,50 +261,72 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 10px 0;
   transition: var(--transition-smooth);
 }
 
 .header.scrolled .nav-container {
-  padding: 8px 0;
+  padding: 6px 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .nav-logo-img {
-  height: 64px;
-  width: auto;
+  height: 96px;
+  width: 96px;
+  min-width: 96px;
+  object-fit: contain;
   border-radius: 50%;
-  border: 2px solid var(--glass-border);
-  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(139, 92, 246, 0.25);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
 }
 
 .header.scrolled .nav-logo-img {
-  height: 50px;
+  height: 68px;
+  width: 68px;
+  min-width: 68px;
 }
 
 .logo:hover .nav-logo-img {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.08) rotate(4deg);
   border-color: var(--color-primary);
-  box-shadow: 0 0 15px var(--color-primary-glow);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), 0 0 25px var(--color-primary-glow);
 }
 
 .logo-text {
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, var(--text-muted));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1;
+  justify-content: center;
 }
 
-.logo-text span {
+.logo-text .nav-brand-gray {
+  font-family: var(--font-brand-gray);
+  font-size: 1.55rem;
+  font-weight: 400;
+  display: inline-block;
+  transform: scaleY(2);
+  transform-origin: left top;
+  margin-bottom: 0.55em;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.logo-text .nav-brand-sub {
+  font-family: var(--font-brand-sub);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
   color: var(--color-primary);
-  -webkit-text-fill-color: var(--color-primary);
+  display: inline-block;
+  transform: scaleX(1.15);
+  transform-origin: left center;
 }
 
 .nav-links {
@@ -321,7 +373,7 @@ a {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 130px;
   position: relative;
   overflow: hidden;
 }
@@ -334,21 +386,46 @@ a {
 }
 
 .hero-content h2 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-family: var(--font-subheading);
   color: var(--color-primary);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 16px;
+  letter-spacing: 0.22em;
+  margin-bottom: 22px;
 }
 
-.hero-content h1 {
-  font-size: 5rem;
-  margin-bottom: 24px;
-  line-height: 0.95;
-  background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hero-brand-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  line-height: 1;
+}
+
+.hero-brand-title .brand-gray {
+  font-family: var(--font-brand-gray);
+  font-size: clamp(3.2rem, 6.5vw, 5.2rem);
+  font-weight: 400;
+  display: inline-block;
+  transform: scaleY(2);
+  transform-origin: left top;
+  margin-bottom: 1.25em;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.25);
+}
+
+.hero-brand-title .brand-music-factory {
+  font-family: var(--font-brand-sub);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  display: inline-block;
+  transform: scaleX(1.15);
+  transform-origin: left center;
+  padding-left: 2px;
 }
 
 .hero-content p {
@@ -369,7 +446,7 @@ a {
   align-items: center;
 }
 
-/* Glow behind the hero logo */
+/* Glow behind the hero artwork */
 .hero-visual::before {
   content: '';
   position: absolute;
@@ -390,6 +467,12 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--color-primary-glow);
   animation: floatLogo 6s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+}
+
+.hero-image-wrapper:hover {
+  transform: scale(1.03) rotate(1deg);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px var(--color-primary);
 }
 
 #hero-art {
@@ -1480,13 +1563,32 @@ textarea.form-input {
 }
 
 .footer-logo {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin-bottom: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 16px;
 }
 
-.footer-logo span {
+.footer-brand-gray {
+  font-family: var(--font-brand-gray);
+  font-size: 2.2rem;
+  font-weight: 400;
+  display: inline-block;
+  transform: scaleY(2);
+  transform-origin: center bottom;
+  margin-bottom: 0.48em;
+  background: linear-gradient(135deg, #ffffff 60%, var(--text-muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-brand-sub {
+  font-family: var(--font-brand-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
   color: var(--color-primary);
 }
 
@@ -1684,6 +1786,19 @@ textarea.form-input {
     text-align: center;
     gap: 40px;
   }
+  .hero-brand-title {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-brand-title .brand-gray {
+    transform-origin: center top;
+  }
+  .hero-brand-title .brand-music-factory {
+    transform-origin: center center;
+    padding-left: 0;
+  }
   .hero-content p {
     margin-left: auto;
     margin-right: auto;
@@ -1775,9 +1890,35 @@ textarea.form-input {
   }
   
   /* Hero Section Mobile */
-  .hero-content h1 {
-    font-size: 2.5rem;
-    line-height: 1.2;
+  .hero-brand-title {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-brand-title .brand-gray {
+    font-size: clamp(2.5rem, 10vw, 3.6rem);
+    transform-origin: center top;
+    margin-bottom: 1.25em;
+  }
+  
+  .hero-brand-title .brand-music-factory {
+    font-size: clamp(0.85rem, 3.5vw, 1.2rem);
+    letter-spacing: 0.35em;
+    transform-origin: center center;
+    padding-left: 0;
+  }
+
+  .hero-image-wrapper {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .nav-logo-img {
+    height: 72px;
+    width: 72px;
+    min-width: 72px;
   }
   
   .hero-content p {
