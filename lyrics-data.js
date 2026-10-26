@@ -160,7 +160,7 @@ const LYRICS_DATA = {
   },
   "Cute Little Lesbians": {
     "title": "Cute Little Lesbians",
-    "author": "Matt Krammer, Steve Mansour",
+    "author": "Matt Kramer, Steve Mansour",
     "tempo": "156",
     "sections": [
       {
@@ -794,8 +794,8 @@ const LYRICS_DATA = {
       }
     ]
   },
-  "Way To Deep In Love": {
-    "title": "Way To Deep In Love",
+  "Way Too Deep In Love": {
+    "title": "Way Too Deep In Love",
     "author": "Matt Kramer and Steve Mansour",
     "tempo": "",
     "sections": [

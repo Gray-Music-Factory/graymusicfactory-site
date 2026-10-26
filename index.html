@@ -22,7 +22,10 @@
         <div class="container nav-container">
             <a href="#home" class="logo">
                 <img src="logo/GRAYMusicFactory.png" alt="GRAY Music Factory Logo" class="nav-logo-img">
-                <span class="logo-text"><span class="nav-brand-gray">GRAY</span><span class="nav-brand-sub">MUSIC FACTORY</span></span>
+                <span class="logo-text">
+                    <span class="nav-brand-gray">GRAY</span>
+                    <span class="nav-brand-sub">MUSIC FACTORY</span>
+                </span>
             </a>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -291,17 +294,31 @@
                 <div class="contact-info">
                     <h3>Let's start a conversation</h3>
                     <p>
-                        Interested in our songs, collaborating on a project, or just want to say hi? Fill out the form
-                        or reach out directly.
+                        Interested in our songs, collaborating on a project, or just want to say hi? Reach out directly
+                        to us on Facebook Messenger or connect via our official band channels.
                     </p>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
+                            <div class="contact-icon" style="color: #00c6ff;">
+                                <i class="fab fa-facebook-messenger"></i>
                             </div>
                             <div class="contact-item-text">
-                                <h4>Email</h4>
-                                <p>info@graymusicfactory.com</p>
+                                <h4>Facebook Messenger</h4>
+                                <p><a href="https://m.me/100063776965796" target="_blank" rel="noopener"
+                                        style="color: var(--text-main); text-decoration: underline; text-underline-offset: 4px;">m.me/100063776965796</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" style="color: #1877f2;">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <div class="contact-item-text">
+                                <h4>Facebook Page</h4>
+                                <p><a href="https://www.facebook.com/profile.php?id=100063776965796" target="_blank"
+                                        rel="noopener"
+                                        style="color: var(--text-main); text-decoration: underline; text-underline-offset: 4px;">facebook.com/GrayMusicFactory</a>
+                                </p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -310,31 +327,39 @@
                             </div>
                             <div class="contact-item-text">
                                 <h4>Location</h4>
-                                <p>Silicon Valley & California Coast</p>
+                                <p>San Jose & Silicon Valley, California</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="form-name" class="form-label">Name</label>
-                        <input type="text" id="form-name" class="form-input" required placeholder="Your Name">
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-card-badge"><i class="fab fa-facebook-messenger"></i> Direct Band Messenger
+                        </div>
+                        <h3>Chat With The Band</h3>
+                        <p>We check Facebook Messenger continuously. Whether you want to talk about bookings,
+                            collaborations, song stems, or just share your thoughts on our music, drop us a direct
+                            message!</p>
                     </div>
-                    <div class="form-group">
-                        <label for="form-email" class="form-label">Email</label>
-                        <input type="email" id="form-email" class="form-input" required
-                            placeholder="your.email@example.com">
+
+                    <div class="contact-actions">
+                        <a href="https://m.me/100063776965796" target="_blank" rel="noopener"
+                            class="btn btn-primary btn-messenger">
+                            <i class="fab fa-facebook-messenger"></i> Message Us on Facebook
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100063776965796" target="_blank" rel="noopener"
+                            class="btn btn-secondary btn-fb-page">
+                            <i class="fab fa-facebook"></i> Visit Official Facebook Page
+                        </a>
                     </div>
-                    <div class="form-group">
-                        <label for="form-message" class="form-label">Message</label>
-                        <textarea id="form-message" class="form-input" required
-                            placeholder="Write your message here..."></textarea>
+
+                    <div class="contact-card-footer">
+                        <div class="response-badge">
+                            <span class="status-dot"></span> Direct line to Steve & Matt
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        Send Message <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -347,10 +372,20 @@
                 <span class="footer-brand-sub">MUSIC FACTORY</span>
             </div>
             <p>All songs written by Matt Kramer & Steve Mansour</p>
-            
-            <div class="footer-socials" style="margin-top: 16px; margin-bottom: 16px; display: flex; justify-content: center; gap: 12px;">
-                <a href="https://www.youtube.com/@graymusicfactory" target="_blank" class="footer-social-link" title="Official YouTube Channel">
+
+            <div class="footer-socials"
+                style="margin-top: 16px; margin-bottom: 16px; display: flex; justify-content: center; gap: 14px;">
+                <a href="https://www.youtube.com/@graymusicfactory" target="_blank" rel="noopener"
+                    class="footer-social-link" title="Official YouTube Channel">
                     <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100063776965796" target="_blank" rel="noopener"
+                    class="footer-social-link" title="Official Facebook Page">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://m.me/100063776965796" target="_blank" rel="noopener" class="footer-social-link"
+                    title="Message Us on Facebook Messenger">
+                    <i class="fab fa-facebook-messenger"></i>
                 </a>
             </div>
 
@@ -358,7 +393,7 @@
                 &copy; 2026 GRAY Music Factory. All rights reserved.
             </div>
             <div class="footer-version" style="margin-top: 8px; font-size: 0.75rem; opacity: 0.3;">
-                Version <span id="site-version">2026.10.25-637</span>
+                Version <span id="site-version">2026.10.25-1375</span>
             </div>
         </div>
     </footer>
@@ -492,7 +527,9 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="video-iframe-container">
-                <iframe id="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="video-iframe" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
             <div class="video-modal-footer">
                 <a id="video-direct-link" href="" target="_blank" class="video-direct-link">
